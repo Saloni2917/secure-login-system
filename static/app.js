@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-   // ✅ Clear captcha input on page load
+   // Clear captcha input on page load
   (function () {
     const captchaInput = document.querySelector("input[name='captcha']");
     if (captchaInput) captchaInput.value = "";
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const captcha = form.querySelector("input[name='captcha']");
       const captchaAns = form.querySelector("input[name='captcha_answer']");
 
-      // ⛔ CAPTCHA validation FIRST (stop submit early if wrong)
+      // CAPTCHA validation FIRST (stop submit early if wrong)
       if (captcha && captchaAns) {
         const user = (captcha.value || '').trim();
         const truth = (captchaAns.value || '').trim();
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       
-      const role = form.querySelector("select[name='role']"); // already hai to reuse
+      const role = form.querySelector("select[name='role']"); 
 
       if (role) {
         const v = (role.value || '').trim();
