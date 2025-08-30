@@ -1,0 +1,6 @@
+flask
+flask-bcrypt
+flask-pymongo
+flask-session
+PyJWT
+python-dotenv

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card card--center">
+  <h1 class="title">404</h1>
+  <p class="subtitle">We couldn't find that page.</p>
+  <a class="btn" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+</section>
+{% endblock %}

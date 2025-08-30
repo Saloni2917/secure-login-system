@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card card--wide">
+  <div class="flex-between">
+    <div>
+      <h1 class="title">User Management</h1>
+      <p class="subtitle">Review all users in the system</p>
+    </div>
+    <div class="search">
+      <input id="userSearch" type="search" placeholder="Search users by name or email..." />
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="table" id="usersTable">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Failed Attempts</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td class="mono">{{ u._id }}</td>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td>
+            <span class="badge {{ 'badge--admin' if u.role == 'admin' else 'badge--user' }}">
+              {{ u.role|capitalize }}
+            </span>
+          </td>
+          <td>{{ u.failed_attempts or 0 }}</td>
+          <td>
+            {% if u.locked_until and u.locked_until > now() %}
+              <span class="chip chip--danger">
+                Locked (until {{ u.locked_until.strftime("%Y-%m-%d %H:%M:%S") }})
+              </span>
+            {% else %}
+              <span class="chip chip--ok">Active</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="muted"><a href="{{ url_for('dashboard') }}">← Back to Dashboard</a></p>
+</section>
+{% endblock %}

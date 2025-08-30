@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card card--center">
+  <h1 class="title">Create your account</h1>
+
+  <form method="POST" class="form" novalidate>
+    <label class="field">
+      <span>Username <span class="required">*</span></span>
+      <input type="text" name="username" placeholder="Your_name" minlength="3"  autocomplete="new-username"  required />
+      <small class="error-msg" id="username-error"></small>
+    </label>
+
+    <label class="field">
+      <span>Email <span class="required">*</span></span>
+      <input type="email" name="email" placeholder="you@example.com" autocomplete="off"  required />
+      <small class="error-msg" id="email-error"></small>
+    </label>
+
+    <label class="field password-field">
+      <span>Password <span class="required">*</span></span>
+      <input id="reg-password" type="password" name="password" placeholder="Minimum 8 characters" autocomplete="new-password"  required />
+      <small class="error-msg" id="email-error"></small>
+      <button class="toggle" type="button" data-toggle="#reg-password" aria-label="Show/Hide password">👁</button>
+      <div class="pw-meter" id="pw-meter">
+        <div class="pw-meter__bar" id="pw-meter-bar"></div>
+      </div>
+      <ul class="pw-rules" id="pw-rules">
+        <li id="rule-upper">Contains uppercase , lowercase letter</li>
+        <li id="rule-digit">Contains a number,special symbol </li>
+      </ul>
+      <small class="hint">Caps Lock: <strong id="caps-reg" class="caps caps--off">Off</strong></small>
+    </label>
+
+    <div class="field">
+      <label for="role">Role</label>
+        <select name="role" id="role" required>
+          <option value="">-- Select Role --</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+      <div class="error-msg"></div>
+    </div>
+
+    <div class="captcha">
+      <label class="field">
+        <span>Prove you're human</span>
+        <div class="captcha__row">
+          <span class="captcha__q">{{ captcha_q }}</span>
+          <input type="text" name="captcha" placeholder="Answer" inputmode="numeric" required />
+        </div>
+      </label>
+      <input type="hidden" name="captcha_answer" value="{{ captcha_a }}" />
+    </div>
+
+    <button class="btn btn--primary" type="submit">Create account</button>
+    <p class="muted">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+  </form>
+</section>
+{% endblock %}

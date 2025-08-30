@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card card--center">
+  <h1 class="title">Dashboard</h1>
+  <p class="subtitle">You're signed in as <span class="badge">{{ role|capitalize }}</span></p>
+
+  <div class="grid">
+    <div class="panel">
+      <h3>Quick Links</h3>
+      <ul class="list">
+        <li><a href="{{ url_for('logout') }}">Log out</a></li>
+        {% if role == "admin" %}
+        <li><a href="{{ url_for('admin_users') }}">Manage Users</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Security Tips</h3>
+      <ul class="list">
+        <li>Use a strong, unique password</li>
+        <li>Don’t reuse passwords across sites</li>
+        <li>Beware of phishing emails</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}

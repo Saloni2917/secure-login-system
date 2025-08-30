@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card card--center">
+  <h1 class="title">Welcome back</h1>
+  <p class="subtitle">Sign in with your email and password</p>
+
+  <form method="POST" class="form">
+   <label class="field">
+      <span>Email <span class="required">*</span></span>
+      <input type="email" name="email" placeholder="you@example.com" autocomplete="off" required />
+      <small class="error-msg" id="email-error"></small>
+  </label>
+
+    <label class="field password-field">
+      <span>Password</span>
+      <input id="login-password" type="password" name="password" placeholder="••••••••" autocomplete="new-password" required />
+      <button class="toggle" type="button" data-toggle="#login-password" aria-label="Show/Hide password">👁</button>
+      <small class="hint">Caps Lock: <strong id="caps-login" class="caps caps--off">Off</strong></small>
+    </label>
+
+    <div class="captcha">
+      <label class="field">
+        <span>Prove you're human</span>
+        <div class="captcha__row">
+          <span class="captcha__q">{{ captcha_q }}</span>
+          <input type="text" name="captcha" placeholder="Answer" inputmode="numeric" required />
+        </div>
+      </label>
+      <input type="hidden" name="captcha_answer" value="{{ captcha_a }}" />
+    </div>
+
+    <button class="btn btn--primary" type="submit">Log in</button>
+    <p class="muted">No account? <a href="{{ url_for('register') }}">Create one</a></p>
+  </form>
+</section>
+{% endblock %}

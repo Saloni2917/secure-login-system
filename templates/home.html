@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | Secure Login System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+      color: var(--text, #f1f1f1);
+      background: linear-gradient(120deg, #0d0d0d, #1a1a1a 60%, #222); /* dark neutral */
+    }
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 40px 50px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      color: #cfd3cf; /* soft green accent */
+    }
+
+    p {
+      margin: 0 0 20px;
+      color: #aaa;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1a1f46, #1a1f46);
+      color:var(--text);
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px #202656; color:var(--text); border:1px solid var(--border);
+    
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Welcome to Secure Login System</h1>
+    <p>This is your homepage. Please login or register to continue.</p>
+
+    <a href="{{ url_for('login') }}" class="btn">Login</a>
+    <a href="{{ url_for('register') }}" class="btn">Register</a>
+  </div>
+</body>
+</html> 
