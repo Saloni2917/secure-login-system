@@ -19,7 +19,7 @@ A secure login and registration system with captcha validation, account lockout,
 ## Tech Stack
 - **Backend:** Python (Flask)
 - **Database:** MongoDB
-- **Authentication:** Flask-Bcrypt, JWT
+- **Authentication:** RBAC,Flask-Bcrypt, JWT
 - **Frontend:** HTML, CSS, JS (Jinja2 templates)
 
 ---
@@ -46,7 +46,7 @@ project-root/
 
 ## Setup Instructions
 
-### 1. Clone repository
+### Clone repository
 
 git clone https://github.com/<your-username>/<repo-name>.git
 cd <repo-name>
@@ -55,11 +55,11 @@ cd <repo-name>
 ### Create virtual environment
 python -m venv venv
 venv\Scripts\activate    # Windows
-source venv/bin/activate # Linux/Mac
 
-### .env file 
-# Flask Secret Key 
-FLASK_SECRET_KEY=your_flask_secret_key_here
+
+### .env file setup
+create the env file after launching the peoject in editor
+MONGO_URI = "your db connection string"
 # JWT Secret (token generate/used verify)
 JWT_SECRET=your_jwt_secret_key_here
 
