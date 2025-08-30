@@ -75,7 +75,7 @@ def generate_captcha():
 # ---------- Make `now` available in templates ----------
 @app.context_processor
 def inject_now():
-    return {'now': lambda: datetime.now(timezone.utc)}   # ✅ fixed
+    return {'now': lambda: datetime.now(timezone.utc)}  
 
 # ---------- Routes ----------
 @app.route("/")
@@ -121,7 +121,7 @@ def login():
         captcha = request.form["captcha"]
         captcha_answer = request.form["captcha_answer"]
 
-        # ✅ Captcha check
+        #  Captcha check
         if captcha != captcha_answer:
             flash("CAPTCHA failed", "danger")
             return redirect(url_for("login"))
@@ -131,14 +131,14 @@ def login():
             flash("Invalid credentials", "danger")
             return redirect(url_for("login"))
         
-        # ✅ Account lock check
+        # Account lock check
         if user.get("locked_until") and datetime.now(timezone.utc) < (
             user["locked_until"].replace(tzinfo=timezone.utc) if user["locked_until"].tzinfo is None else user["locked_until"]
         ):
             flash("Account locked. Try later.", "danger")
             return redirect(url_for("login"))
         
-        # ✅ Password check
+        # Password check
         if bcrypt.check_password_hash(user["password"], password):
             # Reset failed attempts
             users.update_one({"_id": user["_id"]}, {"$set": {"failed_attempts": 0, "locked_until": None}})
@@ -146,7 +146,7 @@ def login():
             # Generate JWT
             token = generate_jwt(user["_id"], user["role"])
 
-            # ✅ Set session values
+            # Set session values
             session['user'] = str(user['_id'])
             session['email'] = user['email']
             session['role'] = user['role']
@@ -183,7 +183,7 @@ def dashboard():
 def admin_users():
     all_users = list(users.find({}))
     
-    # ✅ Normalize locked_until (backward compatibility)
+    # Normalize locked_until (backward compatibility)
     for u in all_users:
         if u.get("locked_until") and u["locked_until"].tzinfo is None:
             u["locked_until"] = u["locked_until"].replace(tzinfo=timezone.utc)
